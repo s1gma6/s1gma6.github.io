@@ -1,0 +1,993 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>PSUC</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="28d1d716-1751-47d2-bc22-18acffe165bc" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">💻</span></div><h1 class="page-title">PSUC</h1></header><div class="page-body"><p id="9ed92301-d37b-4814-afd0-ca5e72363b31" class="">
+</p><h2 id="126600e2-4a15-4ea5-99c7-36812b878cc0" class="">Binary Search &amp;&amp; Linear Search in C:</h2><pre id="75bb0292-c5cf-4fa1-b4cc-227e46852cb8" class="code"><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+
+    int search = 5;
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8};
+
+    // Linear Search
+    for (int i = 0; i &lt; 8; i++)
+    {
+        if (arr[i] == search)
+        {
+            printf(&quot;%d is found at index %d\n&quot;, search, i);
+        }
+    }
+
+    // Binary Search
+    int left, right;
+    left = 0;
+    right = 0;
+
+    while (left &lt;= right)
+    {
+        right = sizeof(arr) / 4;
+        int mid = (left + right) / 2; // Middle is the middle index
+
+        if (arr[mid] == search)
+        {
+            printf(&quot;%d is found at index %d\n&quot;, search, mid);
+            break;
+        }
+
+        else if (arr[mid] &gt; search)
+        {
+            right = mid - 1; // Suppose we want to search for 3, but mid is 4, then rightmost element becomes middle-1
+        }
+
+        else
+        {
+            left = mid + 1;
+        }
+    }
+}</code></pre><p id="10d3cfac-d23e-43be-b767-90efc940dad6" class="">
+</p><p id="7ba95364-67ba-4d0c-8416-3c2fb8071d13" class="">
+</p><h2 id="73441068-0175-4e5a-aeda-05cab9a04eeb" class="">String Palindrome</h2><pre id="8d456bf5-ea22-4205-a1b8-2887813f50f1" class="code"><code># include &lt;stdio.h&gt;
+# include &lt;string.h&gt;
+int main() {
+
+    char string1[] = {&quot;malayalam&quot;};
+    char string2[100];
+
+    printf(&quot;%d is the length of string\n&quot;, strlen(string1));
+
+    for (int i=0; i&lt;strlen(string1); i++) { 
+
+            string2[i] = string1[strlen(string1) -i-1];
+        }
+    
+    for (int i=0; i&lt;strlen(string1); i++) {
+        if (string1[i]==string2[i]) {
+            printf(&quot;%c is same as %c\n&quot;, string1[i], string2[i]);
+        }
+
+        else if (string1[i]!=string2[i]) {
+            printf(&quot;%c is not same as %c\n&quot;, string1[i], string2[i]);
+        }
+    }
+    
+    
+    }</code></pre><p id="6aec3e88-a453-48d1-a48b-67b8b263c147" class="">
+</p><h2 id="350eebf5-e14d-4cd8-8951-780947ea1c6e" class="">Substring</h2><pre id="9a114a6d-a879-4ac1-88b2-dd22207f3045" class="code"><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char string[] = &quot;poopoooppopoopoo&quot;;  // The input string to search within
+    char search[] = &quot;po&quot;;  // The substring to search for within the string
+    int occur = 0;  // Variable to count the number of occurrences
+
+    // Loop through each character in the string
+    for (int i = 0; i &lt; strlen(string); i++) {
+        int j = 0;
+
+        // Check if the current character matches the first character of the search substring
+        if (string[i] == search[j]) {
+
+            // Increment j and compare subsequent characters until a mismatch occurs
+            while (string[i + j] == search[j]) {
+                occur++;  // Increment the occurrence count
+                printf(&quot;%c&quot;, string[i + j]);  // Print the matching characters
+                j++;
+            }
+
+            printf(&quot;, %d&quot;, i);  // Print the starting index of the occurrence
+            printf(&quot;\n&quot;);
+        }
+    }
+
+    occur /= 2;  // Divide the occurrence count by 2 to account for overlapping occurrences
+
+    printf(&quot;%d is the number of occurrences\n&quot;, occur);  // Print the final occurrence count
+
+    return 0;
+}
+
+    // Pseudocode
+
+    /*
+    for i in N:
+        if N[i] == K[0]:
+            while N[i] == K[j]:
+                occur++
+                j++    
+
+        
+        counter/=3
+    */
+}</code></pre><p id="735e8fdf-d9b7-4c94-b426-c841bd60a517" class="">
+</p><h2 id="aade1c1a-90dd-404a-82f7-a52b7802eaba" class="">Principal Diagonal Elements to Secondary Elements</h2><pre id="52062d89-c8d9-4c5d-baf1-1c5fba3e0200" class="code"><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+
+    int arr[3][3] = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}};
+
+    for (int i = 0; i &lt; 3; i++)
+    {
+        int x = arr[i][i];
+        int y = arr[i][3 - i - 1];
+
+        arr[i][3 - i - 1] = x;
+        arr[i][i] = y;
+    }
+
+    for (int j = 0; j &lt; 3; j++)
+    {
+        for (int k = 0; k &lt; 3; k++)
+        {
+            printf(&quot;%d &quot;, arr[j][k]);
+        }
+        printf(&quot;\n&quot;);
+    }
+}</code></pre><p id="9d1146dc-591d-49c2-99c9-c0fa81a904a9" class="">
+</p><h2 id="edb2bb59-9f8b-4dd4-a705-39d8a23808b0" class="">Selection Sort</h2><pre id="5dac0e75-98c6-4c7d-92c9-3f2330d2064b" class="code"><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+
+    int min_index = 0;
+    int i, j;
+
+    int arr[] = {1, 3, 4, 2, 7, 5, 8, 6, 9, 0};
+
+    for (i = 0; i &lt; 9; i++)
+    {
+        min_index = i; // Sets the minimum index value to
+        for (j = i + 1; j &lt; 10; j++)
+        {
+            if (arr[j] &lt; arr[min_index])
+            { // Checks if the current element is lesser than minimum element
+                min_index = j;
+            }
+        }
+
+        int temp = 0;
+        temp = arr[min_index]; // switches current element and minimum element
+        arr[min_index] = arr[i];
+        arr[i] = temp;
+    }
+
+    for (int k = 0; k &lt; 10; k++)
+        printf(&quot;%d &quot;, arr[k]);
+    printf(&quot;\n&quot;);
+}</code></pre><p id="79fe9c96-4fb4-4eb6-bc9f-87e3635e73cd" class="">
+</p><h3 id="bc627ede-8ca0-4931-95bb-d19f6ae8199b" class="">Explanation that I can come up with.</h3><ol type="1" id="697eb585-ed5f-495a-9148-dde0275fb3d6" class="numbered-list" start="1"><li>First, you loop through the original unsorted array n-1 times, because by the end of the loops, you’ll be left with a sub-array of size 1, which by default is sorted, so there’s no need to perform sorting on that array again. You can, it will work, but it’s unnecessary.</li></ol><ol type="1" id="31386d6a-7109-4c4d-af2a-6386ca965ff0" class="numbered-list" start="2"><li>Now, you set the minimum index value as 0, for obvious reasons. <p id="40f9960c-a98f-4c6f-920d-99c5004f63a0" class="">The purpose of the outer array is to simply:<div class="indented"><p id="240fbaeb-aaf0-4aab-a213-022266a39522" class="">The outer loop literally partitions the original array into smaller and smaller sub-arrays from the leftmost to the rightmost element. Then, it assigns the starting index of each sub-array as an assumption (for the sake of the inner loop) for comparison across other elements within the sub-array.
+Then the inner loop runs and compares with the minimum index element as assigned before and finds the new smallest sub-array element, which then replaces the originally arbitrarily assigned minimum index variable to help replacement</p></div></p></li></ol><ol type="1" id="d53c715c-6914-4377-96f3-7731424c8356" class="numbered-list" start="3"><li>Now, you loop over each and every element with the inner loop and find out if the element, which starts from i+1 because with every iteration or pass, you’d want to find the next unsorted sub-array.</li></ol><ol type="1" id="b49b0f1f-3660-4e9b-8c2d-9f911bde8bfc" class="numbered-list" start="4"><li>Not exactly. The if statement in the inner loop of selection sort is used to update the index of the minimum element in the unsorted subarray if a smaller element is found. Here&#x27;s how it works:</li></ol><ol type="1" id="d5d62615-aa6e-45cf-85df-8fe0aece4384" class="numbered-list" start="5"><li>The loop variable j is used to iterate over the unsorted elements in the subarray, starting from the element at index i+1.</li></ol><ol type="1" id="a3535216-d590-4c7a-9ed0-e692c4b007d9" class="numbered-list" start="6"><li>If the current element at index j is smaller than the current minimum element at index min_index, the index of the new minimum element is updated to j. This is done by setting min_index to j.</li></ol><ol type="1" id="c4c7a143-cd2b-490d-86bc-6feaa4689449" class="numbered-list" start="7"><li>After the inner loop completes, the variable min_index contains the index of the smallest element in the unsorted subarray, which is used to swap the minimum element with the first element of the unsorted subarray in the outer loop.</li></ol><p id="bc45f40e-5ea7-4409-8f5d-943ceb4d8478" class="">So, the if statement is used to compare each element in the unsorted subarray with the current minimum element and update the index of the minimum element if a smaller element is found. The loop continues until it has compared all the elements in the subarray.</p><p id="1767f804-85e3-406b-9b22-e006c63fd7f8" class="">
+</p><h2 id="e6a654e2-ff1c-4bf7-8298-80cc325ccc8f" class="">Bubble Sort</h2><pre id="351bdc30-1058-4860-ae85-e55795885f3e" class="code"><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int arr[] = {1, 3, 4, 7, 5, 8, 10, 9, 2, 6};
+
+    // Bubble Sort algorithm to sort the array in ascending order.
+    // The algorithm repeatedly compares adjacent elements and swaps them if they are in the wrong order.
+
+    for (int i = 0; i &lt; (sizeof(arr) / 4) - 1; i++)
+    {
+        int swapped = 0;
+
+        // Compare adjacent elements and swap if necessary
+        for (int j = i + 1; j &lt; (sizeof(arr) / 4); j++)
+        {
+            if (arr[i] &gt; arr[j])
+            {
+                int temp = 0;
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                swapped = 1;  // Set swapped flag to indicate a swap occurred
+            }
+
+            // Print the array after each swap
+            for (int k = 0; k &lt; (sizeof(arr) / 4); k++)
+            {
+                printf(&quot;%d &quot;, arr[k]);
+            }
+            printf(&quot;\n&quot;);
+        }
+
+        // If no swaps occurred in the inner loop, the array is already sorted
+        if (swapped == 0)
+            break;
+
+        printf(&quot;\n&quot;);
+    }
+}</code></pre><p id="6a8cddfc-da44-4517-aa07-5646e2be92de" class="">
+</p><p id="c2d3ced7-9ccf-4156-bbfc-69315421de60" class="">Alternative implementation:</p><pre id="2f9cedf8-a47c-4c8f-a739-4b1901c9516e" class="code"><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+
+    int arr[] = {3, 2, 4, 1};
+
+    for (int k = 0; k &lt; 4; k++)
+    {
+        int swapped = 0;
+        for (int i = 0; i &lt; 3; i++)
+        {
+            if (arr[i] &gt; arr[i + 1])
+            {
+                int temp = 0;
+                temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+                swapped = 1;
+            }
+        }
+
+        if (swapped == 0)
+            break;
+        for (int j = 0; j &lt; 4; j++)
+        {
+            printf(&quot;%d &quot;, arr[j]);
+        }
+        printf(&quot;\n&quot;);
+    }
+}</code></pre><h2 id="a8ad22a3-c81e-47bd-a655-e8eb0d4760a4" class="">Selection Sorting in Strings</h2><pre id="693489bd-5e23-40ee-911f-049c8374e6cc" class="code"><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    char array[3][10] = {
+        {&quot;apple&quot;},
+        {&quot;orange&quot;},
+        {&quot;banana&quot;}};
+
+    // Selection Sort for strings.
+    // Sorting the strings in lexicographic order using selection sort algorithm.
+
+    for (int i = 0; i &lt; 2; i++)
+    {
+        int min = i;
+
+        // Find the minimum element in the unsorted portion of the array
+        for (int j = i + 1; j &lt; 3; j++)
+        {
+            if (array[i][0] &gt; array[j][0])
+            {
+                min = j;
+            }
+        }
+
+        // Swap the current element with the minimum element
+        char temp[100];
+        strcpy(temp, array[i]);
+        strcpy(array[i], array[min]);
+        strcpy(array[min], temp);
+    }
+
+    // Print the sorted array
+    for (int i = 0; i &lt; 3; i++)
+    {
+        puts(array[i]);
+    }
+
+    return 0;
+}</code></pre><p id="75328345-8226-4024-ace1-4853b901f3c1" class="">
+</p><h2 id="d111e5e4-10f5-49ba-81bd-8b4068c57396" class="">Structures, Functions, Pointers to Structs</h2><pre id="f11e4295-9eca-4a56-9fd0-602259b4bc52" class="code"><code>#include &lt;stdio.h&gt;
+
+struct Student {
+    char name[50];  // Name of the student
+    int age;        // Age of the student
+    int grade;      // Grade of the student
+};
+
+// Function to accumulate student information
+void accumulate(struct Student* x) {
+    printf(&quot;Enter name: &quot;);
+    fgets(x-&gt;name, sizeof(x-&gt;name), stdin);  // Safely read the name input using fgets
+    // Using fgets ensures that the input is limited to the size of the name array,
+    // preventing buffer overflow and enhancing security.
+
+    printf(&quot;Enter age and grade: &quot;);
+    scanf(&quot;%d %d&quot;, &amp;x-&gt;age, &amp;x-&gt;grade);  // Read the age and grade inputs using scanf
+    // The &amp; operator is used to pass the address of the age and grade members of the structure
+    // to scanf, allowing the function to write the entered values into the structure.
+    // This way, the modified values will be reflected in the original structure outside of the function.
+}
+
+int main() {
+    struct Student student;
+    accumulate(&amp;student);  // Pass the student structure by reference using a pointer
+    // By passing the structure by reference, any modifications made to the structure
+    // within the accumulate function will affect the original structure.
+
+    printf(&quot;Name: %s&quot;, student.name);
+    printf(&quot;Age: %d\n&quot;, student.age);
+    printf(&quot;Grade: %d\n&quot;, student.grade);
+
+    return 0;
+}</code></pre></div></article></body></html>
